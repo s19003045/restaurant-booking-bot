@@ -105,3 +105,6 @@ dist
 
 # ngrok
 ngrok.*
+
+# vs code
+.idea/
