@@ -5,6 +5,8 @@ const {
 } = require("../../../Services/common");
 
 async function RuleBased(context, props) {
+  console.log('userId', context.event.source.userId)
+  console.log('isText', context.event.isText)
   // 回應訊息(handleText)前, 統一處理的作業:
   // 1.從資料庫取得 使用者資訊
   // 2.確認是否已同意使用者隱私權政策

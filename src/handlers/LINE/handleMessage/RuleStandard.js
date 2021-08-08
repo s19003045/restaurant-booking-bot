@@ -1,9 +1,29 @@
 const { router, text, route } = require("bottender/router");
 const { fallbackMsgDefault } = require("../../../Services/common");
+const liffController = require("../../../controllers/liff/liffController")
 
-async function SendHello() {
+async function SendHello(context) {
   await context.sendText("hello");
 }
+
+// 我的訂閱
+async function MySubscription(context) {
+  console.log('liffController.liffQueryType.rbw.name', liffController.liffQueryType.rbw.name)
+  let text = `請點擊連結查看〈我的訂閱〉 \n`
+  text += `${process.env.LIFF_URL}?type=${liffController.liffQueryType.rbw.name}&page=${liffController.liffQueryPage.userSubscription.name}`
+  // type=rbw => 前往 react-booking-web
+  await context.sendText(text);
+}
+
+// 餐廳清單
+async function RestList(context) {
+  let text = `請點擊連結查看〈餐廳清單〉 \n`
+  text += `${process.env.LIFF_URL}?type=${liffController.liffQueryType.rbw.name}&page=${liffController.liffQueryPage.homeAll.name}`
+  // type=rbw => 前往 react-booking-web
+  await context.sendText(text);
+}
+
+
 
 // fallback
 async function fallback(context) {
@@ -58,6 +78,12 @@ function RuleStandard(context, props) {
   return router([
     // 助產資源
     text(["hello", "hi"], SendHello),
+
+    // 我的訂閱
+    text(["我的訂閱"], MySubscription),
+
+    // 餐廳清單
+    text(["餐廳清單"], RestList),
 
     // open fallback when Dialogflow is not needed
     text("*", () => fallback),
