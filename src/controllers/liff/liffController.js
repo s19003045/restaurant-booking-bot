@@ -1,11 +1,11 @@
 const path = require('path');
-const db = require('../../../models');
-const {
-  Availablity,
-  Platform,
-  Restaurant,
-  Url
-} = db;
+// const db = require('../../../models');
+// const {
+//   Availablity,
+//   Platform,
+//   Restaurant,
+//   Url
+// } = db;
 
 // 記錄使用者訊息
 const recordUserMessage = async (message, source, UserId) => {
