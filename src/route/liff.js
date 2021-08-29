@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { httpHeader } = require("./handleHttpHeader");
+const liffController = require("../controllers/liff/liffController")
 
 function handleUrl(req, res, next) {
   console.log("req.url", req.url);
@@ -15,8 +16,6 @@ const preProcessing = [
   // verifyPermission
 ];
 
-router.get("/*", preProcessing, (req, res) => {
-  return res.json("liff page");
-});
+router.get("/*", preProcessing, liffController.handleLiffUrl);
 
 module.exports = router;
